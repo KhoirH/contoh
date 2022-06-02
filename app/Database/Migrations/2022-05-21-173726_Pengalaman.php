@@ -18,7 +18,12 @@ class Pengalaman extends Migration
                     'auto_increment' => TRUE
             ),
             'pengalaman' => array(
+                    'constraint' => 255,
                     'type' => 'VARCHAR',
+            ),
+            'id_mahasiswa' => array(
+                'type' => 'INT',
+                'constraint' => 255,
             ),
         ));
         $this->forge->addKey('id_pengalaman', TRUE);

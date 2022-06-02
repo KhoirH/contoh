@@ -18,12 +18,21 @@ class Kemampuan extends Migration
                     'auto_increment' => TRUE
             ),
             'kategori_kemampuan' => array(
-                'type' => 'VARCHAR',
+                    'constraint' => 255,
+                    'type' => 'VARCHAR',
             ),
             'sub_kategori_kemampuan' => array(
-                'type' => 'VARCHAR',
+                    'constraint' => 255,
+                    'type' => 'VARCHAR',
+            ),
+            'id_mahasiswa' => array(
+                'type' => 'INT',
+                'constraint' => 255,
             ),
         ));
+        
+        $this->forge->addKey('id_kemampuan', TRUE);
+        $this->forge->createTable('kemampuan');
     }
 
     public function down()

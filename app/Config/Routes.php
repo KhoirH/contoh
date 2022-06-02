@@ -33,6 +33,14 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->post('login/save', 'Login::save');
 $routes->post('pengembalian', 'PeminjamanBuku::DoKembalikanBuku');
+$routes->group('curriculum-vitae', function($routes) {
+    $routes->get('/', 'CurriculumVitae::index');
+    $routes->post('add-cv', 'CurriculumVitae::saveCV');
+    $routes->get('delete/(:any)', 'CurriculumVitae::delete/$1');
+    $routes->get('export-excel', 'CurriculumVitae::exportExcel');
+    $routes->get('export-pdf', 'CurriculumVitae::exportPDF');
+    $routes->get('export-pdf-mahasiswa/(:any)', 'CurriculumVitae::exportPDFCV/$1');
+});
 
 /*
  * --------------------------------------------------------------------

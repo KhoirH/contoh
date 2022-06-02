@@ -16,7 +16,7 @@ class Pendidikan extends Migration
                     'unsigned' => TRUE,
                     'auto_increment' => TRUE
             ),
-            'tipe' => array(
+            'tipe_pendidikan' => array(
                     'type' => 'VARCHAR',
                     'constraint' => '50',
             ),
@@ -31,6 +31,10 @@ class Pendidikan extends Migration
             'waktu_pendidikan' => array(
                     'type' => 'VARCHAR',
                     'constraint' => '50',
+            ),
+            'id_mahasiswa' => array(
+                'type' => 'INT',
+                'constraint' => 255,
             ),
         ));
         
