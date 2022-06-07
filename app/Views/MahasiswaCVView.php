@@ -193,7 +193,7 @@
         <h2>Education</h2>
         <h4 style="text-decoration: underline;">Formal</h4>
         <div class="edtable">
-            <?php if(isset($pendidikan_formal)) : ?>
+            <?php if(count($pendidikan_formal)>0) : ?>
                 <?php foreach ($pendidikan_formal as $pf) :?>
                     <div class="tablerow">
                         <span class="jobtitle"><?= $pf->tempat_pendidikan ?></span>
@@ -210,7 +210,7 @@
         </div>
         <h4 style="text-decoration: underline;">Non Formal</h4>
         <div class="edtable">
-            <?php if(isset($pendidikan_non_formal)) : ?>
+            <?php if(count($pendidikan_non_formal)>0) : ?>
                 <?php foreach ($pendidikan_non_formal as $pnf) :?>
                     <div class="tablerow">
                         <span class="jobtitle"><?= $pnf->tempat_pendidikan ?></span>
@@ -228,7 +228,7 @@
     </section>
     <section id="skills">
         <h2>Skill</h2>
-        <?php if(isset($kemampuan)) : ?>
+        <?php if(count($kemampuan)>0) : ?>
             <?php foreach ($kemampuan as $k) :?>
                 <div class="edtable">
                     <div class="tablerow">

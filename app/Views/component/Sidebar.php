@@ -94,7 +94,7 @@
     </li>
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url().'/Pengembalian' ?>">
         <i class="fas fa-fw fa-dollar-sign"></i>
         <span>Pengembalian Buku</span></a>
@@ -103,6 +103,7 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
         <a class="nav-link" href="<?php echo base_url().'/CurriculumVitae' ?>">
+        <i class="fas fa-fw fa-user"></i>
         <span>Curriculum Vitae</span></a>
     </li>
 

@@ -26,7 +26,7 @@ class CurriculumVitae extends BaseController
     public function index()
     {
         $all_mahasiswa = $this->db->query("SELECT mahasiswa.id_mahasiswa, nama, tempat_lahir, tanggal_lahir, agama, jenis_kelamin, alamat, no_hp, status, email, phase_1.id_pendidikan, phase_1.tipe_pendidikan, phase_1.tempat_pendidikan, phase_1.waktu_pendidikan, phase_1.nama_pendidikan, GROUP_CONCAT(phase_1.id_pengalaman SEPARATOR '[,]') as id_pengalaman, GROUP_CONCAT(phase_1.pengalaman SEPARATOR '[,]') as pengalaman, phase_1.id_kemampuan, phase_1.kategori_kemampuan, phase_1.sub_kategori_kemampuan from mahasiswa left join ( select id_pengalaman, pengalaman.pengalaman, pengalaman.id_mahasiswa, phase_2.kategori_kemampuan, phase_2.sub_kategori_kemampuan, phase_2.id_kemampuan, GROUP_CONCAT(phase_2.tipe_pendidikan SEPARATOR '[,]') as tipe_pendidikan, GROUP_CONCAT(phase_2.id_pendidikan SEPARATOR '[,]') as id_pendidikan, GROUP_CONCAT(phase_2.waktu_pendidikan SEPARATOR '[,]') as waktu_pendidikan, GROUP_CONCAT(phase_2.tempat_pendidikan SEPARATOR '[,]') as tempat_pendidikan, GROUP_CONCAT(phase_2.nama_pendidikan SEPARATOR '[,]') as nama_pendidikan from pengalaman LEFT join ( select id_pendidikan, pendidikan.id_mahasiswa as id_mahasiswa, pendidikan.tipe_pendidikan, pendidikan.nama_pendidikan, pendidikan.waktu_pendidikan, pendidikan.tempat_pendidikan, GROUP_CONCAT(kemampuan.kategori_kemampuan SEPARATOR '[,]' ) as kategori_kemampuan, GROUP_CONCAT( kemampuan.sub_kategori_kemampuan SEPARATOR '[,]' ) as sub_kategori_kemampuan, GROUP_CONCAT(kemampuan.id_kemampuan SEPARATOR '[,]') as id_kemampuan from pendidikan left JOIN kemampuan on pendidikan.id_mahasiswa = kemampuan.id_mahasiswa GROUP BY id_pendidikan ) as phase_2 on pengalaman.id_mahasiswa = phase_2.id_mahasiswa GROUP BY id_pengalaman ) as phase_1 on mahasiswa.id_mahasiswa = phase_1.id_mahasiswa GROUP BY id_mahasiswa")->getResult();
-        
+
         $data = [
             'all_mahasiswa' => $all_mahasiswa,
         ];
@@ -56,7 +56,7 @@ class CurriculumVitae extends BaseController
                 $kemampuan = [];
                 $pengalaman = [];
                 $max_index = max( count($data['nama_pendidikan']),  count($data['pengalaman']), count($data['kategori_kemampuan']));
-                for($i = 0; $i < $max_index; $i++){
+                for($i = 0; $i < count($data['nama_pendidikan']); $i++){
                     if($data['nama_pendidikan'][$i]) {
                         $pendidikan[] = array(
                             'id_mahasiswa' => $id_mahasiswa,
@@ -66,6 +66,8 @@ class CurriculumVitae extends BaseController
                             'waktu_pendidikan' => $data['waktu_pendidikan'][$i],
                         );
                     }
+                }
+                for($i = 0; $i < count($data['pengalaman']); $i++){
                     if($data['pengalaman'][$i]){
 
                         $pengalaman[] = array(
@@ -73,6 +75,8 @@ class CurriculumVitae extends BaseController
                             'pengalaman' => $data['pengalaman'][$i],
                         );
                     }
+                }
+                for($i = 0; $i < count($data['kategori_kemampuan']); $i++){
                     if($data['kategori_kemampuan'][$i]){
 
                         $kemampuan[] = array(
@@ -102,7 +106,7 @@ class CurriculumVitae extends BaseController
                 
                 $max_index = max( count($data['nama_pendidikan']),  count($data['pengalaman']), count($data['kategori_kemampuan']));
 
-                for($i = 0; $i < $max_index; $i++){
+                for($i = 0; $i < count($data['nama_pendidikan']); $i++){
                     if($data['nama_pendidikan'][$i]) {
                         if($id_pendidikan[$i]) { 
                             $this->pendidikan->update($id_pendidikan[$i], array(
@@ -110,7 +114,7 @@ class CurriculumVitae extends BaseController
                                 'tipe_pendidikan' => $data['tipe_pendidikan'][$i],
                                 'nama_pendidikan' => $data['nama_pendidikan'][$i],
                                 'tempat_pendidikan' => $data['tempat_pendidikan'][$i],
-                                'waktu_pendidikan' => $data['waktu_pendidikan'][$i],
+                                'waktu_pendidikan' => $data['waktu-pendidikan'][$i],
                             ));
                         } else {
                             $pendidikan[] = array(
@@ -122,6 +126,8 @@ class CurriculumVitae extends BaseController
                             );
                         }
                     }
+                }
+                for($i = 0; $i < count($data['pengalaman']); $i++){
                     if($data['pengalaman'][$i]){
                         if($id_pengalaman[$i]) { 
                             $this->pengalaman->update($id_pengalaman[$i], array(
@@ -135,6 +141,8 @@ class CurriculumVitae extends BaseController
                             );
                         }
                     }
+                }
+                for($i = 0; $i < count($data['kategori_kemampuan']); $i++){
                     if($data['kategori_kemampuan'][$i]){
 
                         if($id_kemampuan[$i]) { 
@@ -300,8 +308,8 @@ class CurriculumVitae extends BaseController
 
         $mahasiswa = $this->db->table('mahasiswa')->select('*')->where('id_mahasiswa', $id)->get()->getFirstRow();
         $pengalaman = $this->db->table('pengalaman')->select('*')->where('id_mahasiswa', $id)->get()->getResult();
-        $pendidikan_formal = $this->db->table('pendidikan')->select('*')->where('id_mahasiswa', $id)->where('tipe_pendidikan', 'Formal')->get()->getResult();
-        $pendidikan_non_formal = $this->db->table('pendidikan')->select('*')->where('id_mahasiswa', $id)->where('tipe_pendidikan', 'Non_Formal')->get()->getResult();
+        $pendidikan_formal = $this->db->table('pendidikan')->select('*')->where('id_mahasiswa', $id)->where('tipe_pendidikan', 'formal')->get()->getResult();
+        $pendidikan_non_formal = $this->db->table('pendidikan')->select('*')->where('id_mahasiswa', $id)->where('tipe_pendidikan', 'non-formal')->get()->getResult();
         $kemampuan = $this->db->table('kemampuan')->select('*')->where('id_mahasiswa', $id)->get()->getResult();
         
         $filename = "CV " . $mahasiswa->nama;
@@ -309,7 +317,7 @@ class CurriculumVitae extends BaseController
         $data = [
             'mahasiswa' => $mahasiswa,
             'tentang_saya' => "Lorem ipsum dolor sit amet consectetur, adipisicing elit. In harum natus animi error. Voluptatem aperiam accusantium eveniet, quibusdam vel tempora placeat sit omnis saepe sapiente ab? Voluptate nobis inventore adipisci!",
-            'pengalaman' => array_chunk($pengalaman, ceil(count($pengalaman)/2)),
+            'pengalaman' => (count($pengalaman)>0) ? array_chunk($pengalaman, ceil(count($pengalaman)/2)): null,
             'pendidikan_formal' => $pendidikan_formal,
             'pendidikan_non_formal' => $pendidikan_non_formal,
             'kemampuan' => $kemampuan,
