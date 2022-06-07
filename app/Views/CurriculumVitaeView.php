@@ -411,10 +411,9 @@
                 $('#wrap-pendidikan').append("<div class='d-flex' style='gap:5px;'><div class='form-group'><label for='nama-pendidikan'>Jenis Pendidikan</label><input type='text' class='form-control' name='nama_pendidikan[]' id='nama-pendidikan' placeholder='Enter here'></div><div class='form-group'><label for='tipe-pendidikan'>Tipe</label><select class='form-control' id='tipe-pendidikan' name='tipe_pendidikan[]'>    <option value='formal' selected>Formal</option>    <option value='non-formal'>Non Formal</option></select></div><div class='form-group'><label for='tempat-pendidikan'>Sekolah</label><input type='text' class='form-control' name='tempat_pendidikan[]' id='tempat-pendidikan' placeholder='Enter here'></div><div class='form-group'><label for='waktu-pendidikan'>Waktu Pendidikan</label><input type='text' class='form-control' id='waktu-pendidikan' name='waktu-pendidikan[]' placeholder='Enter here'></div></div>");
             })
 
-            $('#btnTambah').click(function(){
-                console.log('click tambah')
-                $('#form').html(modalFormulir())
-            })
+            // $('#btnTambah').click(function(){
+            //     $('#form').html(modalFormulir())
+            // })
 
             $('.btn-edit').click(function(){
                 data = JSON.parse($(this).attr('data').split("'").join('"'));
