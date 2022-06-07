@@ -10,7 +10,8 @@ class Report extends Model
 
     public function getMonthlyEarn()
     {
-        $sql = "SELECT SUM(total_pembayaran) AS total FROM pengembalian WHERE MONTH(tanggal_pengembalian) = MONTH(CURRENT_DATE()) GROUP BY YEAR(tanggal_pengembalian), MONTH(tanggal_pengembalian)";
+        // $sql = "SELECT SUM(total_pembayaran) AS total FROM pengembalian WHERE MONTH(tanggal_pengembalian) = MONTH(CURRENT_DATE()) GROUP BY YEAR(tanggal_pengembalian), MONTH(tanggal_pengembalian)";
+        $sql = "SELECT SUM(total_pembayaran) AS total FROM pengembalian";
         $query = $this->db->query($sql);
         return $query->getRow()->total;
     }
@@ -37,8 +38,8 @@ class Report extends Model
         $data = [];
         foreach ($query->getResultObject() as $index => $value) {
             $sparator = $index != 0  ? '::' : '';
-            $data['month'] .= $sparator . $value->month;
-            $data['total'] .= $sparator . $value->total;
+            $data['month'] = $sparator . $value->month;
+            $data['total'] = $sparator . $value->total;
         }
 
         return $data;
@@ -52,8 +53,8 @@ class Report extends Model
         $data = [];
         foreach ($query->getResultObject() as $index => $value) {
             $sparator = $index != 0  ? '::' : '';
-            $data['judul_buku'] .= $sparator . $value->judul_buku;
-            $data['total_pinjam'] .= $sparator . $value->total;
+            $data['judul_buku'] = $sparator . $value->judul_buku;
+            $data['total_pinjam'] = $sparator . $value->total;
         }
 
         return $data;

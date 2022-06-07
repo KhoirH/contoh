@@ -99,7 +99,6 @@
     <!-- End of Page Wrapper -->
 
     <!-- Modal -->
-    
     <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
         <form method="POST" action="<?= base_url('curriculum-vitae/add-cv') ?>" id="form">
             <input type="hidden" value="insert" name="type_form"/>
@@ -240,16 +239,20 @@
             </div>
         </form>
     </div>
-    <script >
+    <script>
+        
         function pengalamanView(value) {
             return `<div class='form-group'><input type='hidden' name='id_pengalaman[]' value='${value.id_pengalaman}'/><input type='text' class='form-control' name='pengalaman[]' value='${value.pengalaman}' id='pengalaman' placeholder='Enter here'></div>`
         }
+
         function kemampuanView(value) {
             return `<div class='d-flex' style='gap:5px;'><input type='hidden' name='id_kemampuan[]' value='${value.id_kemampuan}'/><div class='form-group w-100'><label for='kategori-kemampuan'>Kategori Kemampuan</label><input type='text' class='form-control' value='${value.kategori_kemampuan}' name='kategori_kemampuan[]' id='kategori-kemampuan' placeholder='Enter here'></div><div class='form-group w-100'><label for='sub-kategori-kemampuan'>Sub-Kategori Kemampuan</label><input type='text' class='form-control' value='${value.sub_kategori_kemampuan}'  name='sub_kategori_kemampuan[]' id='sub-kategori-kemampuan' placeholder='Enter here'></div></div>`
         }
+
         function pendidikanView(value) {
             return `<div class='d-flex' style='gap:5px;'><input type='hidden' name='id_pendidikan[]' value='${value.id_pendidikan}'/><div class='form-group'><label for='nama-pendidikan'>Jenis Pendidikan</label><input type='text' class='form-control' value='${value.nama_pendidikan}' name='nama_pendidikan[]' id='nama-pendidikan' placeholder='Enter here'></div><div class='form-group'><label for='tipe-pendidikan'>Tipe</label><select class='form-control' id='tipe-pendidikan' value='${value.tipe_pendidikan}' name='tipe_pendidikan[]'>    <option value='formal' selected>Laki-laki</option>    <option value='non-formal'>Perempuan</option></select></div><div class='form-group'><label for='tempat-pendidikan'>Sekolah</label><input type='text' class='form-control'  value='${value.tempat_pendidikan}' name='tempat_pendidikan[]' id='tempat-pendidikan' placeholder='Enter here'></div><div class='form-group'><label for='waktu-pendidikan'>Waktu Pendidikan</label><input type='text' class='form-control' id='waktu-pendidikan' value='${value.waktu_pendidikan}' name='waktu-pendidikan[]' placeholder='Enter here'></div></div>`
         }
+
         $(document).ready(function(){
             $('#btn-add-pengalaman').click(function(){
                 $('#wrap-pengalaman').append("<div class='form-group'><input type='text' class='form-control' name='pengalaman[]' id='pengalaman' placeholder='Enter here'></div>");

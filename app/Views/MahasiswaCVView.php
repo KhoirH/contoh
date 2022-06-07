@@ -133,7 +133,7 @@
             <div class="tablerow">
                 <div id="biodata" class="cell">
                     <h2>About me</h2>
-                    <p><?= $mahasiswa->tentang_saya?></p>
+                    <p><?= $tentang_saya ?></p>
                 </div>
                 <div id="biodata" class="cell" style="width:60%; padding-left: 40px;">
                     <h2>Biodata</h2>
@@ -154,11 +154,11 @@
                                 <li>:</li>
                             </ul>
                             <ul class="cell ul-none">
-                                <li> Hilmi Khoirulloh</li>
-                                <li> Cirebon, 200</li>
-                                <li> Islam</li>
-                                <li> Laki - laki</li>
-                                <li> Jomblo</li>
+                                <li> <?= $mahasiswa->nama ?></li>
+                                <li> <?= $mahasiswa->tempat_lahir ?>, <?= $mahasiswa->tanggal_lahir ?></li>
+                                <li> <?= $mahasiswa->agama ?></li>
+                                <li> <?= $mahasiswa->jenis_kelamin ?></li>
+                                <li> <?= $mahasiswa->status ?></li>
                             </ul>
                         </div>
                     </div>
@@ -170,16 +170,22 @@
         <h2>Experience</h2>
         <div class="skillstable">
             <div class="tablerow">
-                <ul class="cell">
-                    <li>Pants inspection</li>
-                    <li>Squirrel chasing</li>
-                    <li>Basket weaving</li>
-                </ul>
-                <ul class="cell">
+                <?php if(isset($pengalaman)) : ?>
+                    <?php foreach ($pengalaman as $p0) :?>
+                        <ul class="cell">
+                            <?php foreach ($p0 as $p1) :?>
+                                <li><?= $p1->pengalaman ?></li>
+                            <?php endforeach ?>
+                        </ul>
+                    <?php endforeach ?>
+                <?php else: ?>
+                    <p>- No Experience</p>
+                <?php endif ?>
+                <!-- <ul class="cell">
                     <li>Synergetic synthesis</li>
                     <li>Flagrant goofing</li>
                     <li>Perennial loafing</li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </section>
@@ -187,37 +193,63 @@
         <h2>Education</h2>
         <h4 style="text-decoration: underline;">Formal</h4>
         <div class="edtable">
-            <div class="tablerow">
-                <span class="jobtitle">Quantum Dance, MS</span>
-                <span class="right">September 2008</span>
-            </div>
-            <div class="tablerow">
+            <?php if(isset($pendidikan_formal)) : ?>
+                <?php foreach ($pendidikan_formal as $pf) :?>
+                    <div class="tablerow">
+                        <span class="jobtitle"><?= $pf->tempat_pendidikan ?></span>
+                        <span class="right"><?= $pf->waktu_pendidikan ?></span>
+                    </div>
+                <?php endforeach ?>
+            <?php else: ?>
+                <p>- No Formal Education</p>
+            <?php endif ?>
+            <!-- <div class="tablerow">
                 <span>Crazy Go Nuts University</span>
                 <span class="right">Population, Tire</span>
-            </div>
+            </div> -->
         </div>
         <h4 style="text-decoration: underline;">Non Formal</h4>
         <div class="edtable">
-            <div class="tablerow">
-                <span class="jobtitle">Fruit Counting, BA</span>
-                <span class="right">February 2006</span>
-            </div>
-            <div class="tablerow">
+            <?php if(isset($pendidikan_non_formal)) : ?>
+                <?php foreach ($pendidikan_non_formal as $pnf) :?>
+                    <div class="tablerow">
+                        <span class="jobtitle"><?= $pnf->tempat_pendidikan ?></span>
+                        <span class="right"><?= $pnf->waktu_pendidikan ?></span>
+                    </div>
+                <?php endforeach ?>
+            <?php else: ?>
+                <p>- No Non Formal Education</p>
+            <?php endif ?>
+            <!-- <div class="tablerow">
                 <span>Corrugated College of Crepes</span>
                 <span class="right">Calamansi, CA</span>
-            </div>
+            </div> -->
         </div>
     </section>
     <section id="skills">
         <h2>Skill</h2>
-        <div class="edtable">
+        <?php if(isset($kemampuan)) : ?>
+            <?php foreach ($kemampuan as $k) :?>
+                <div class="edtable">
+                    <div class="tablerow">
+                        <span class="right italic"><?= $k->kategori_kemampuan ?></span>
+                    </div>
+                    <div class="tablerow">
+                        <span><?= $k->sub_kategori_kemampuan ?></span>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        <?php else: ?>
+            <p>- No Skill</p>
+        <?php endif ?>
+        <!-- <div class="edtable">
             <div class="tablerow">
                 <span class="right italic">September 2008</span>
             </div>
             <div class="tablerow">
                 <span>Bahasa</span>
             </div>
-        </div>
+        </div> -->
     </section>
 </body>
 </html>

@@ -47,17 +47,24 @@
 
           $max_index = max( count($tipe_pendidikan_array ),  count($pengalaman_array), count($kategori_kemampuan_array));
 
-          for($i = 0; $i < $max_index; $i++) {
-              if($tipe_pendidikan_array[$i]) {
-                  $pendidikanHTML .= "<li>".$tipe_pendidikan_array[$i]."-".$nama_pendidikan_array[$i]."-".$tempat_pendidikan_array[$i]."-".$waktu_pendidikan_array[$i]."</li>";
-              }
-              if($pengalaman_array[$i]){
-                  $pengalamanHTML .= "<li>".$pengalaman_array[$i]."</li>";
-              }
+          for($i = 0; $i < count($kategori_kemampuan_array); $i++) {
+            if($tipe_pendidikan_array[$i]) {
+              $pendidikanHTML .= "<li>".$tipe_pendidikan_array[$i]."-".$nama_pendidikan_array[$i]."-".$tempat_pendidikan_array[$i]."-".$waktu_pendidikan_array[$i]."</li>";
+            }
+          }
+
+          for($i = 0; $i < count($kategori_kemampuan_array); $i++) {
+            if($pengalaman_array[$i]){
+              $pengalamanHTML .= "<li>".$pengalaman_array[$i]."</li>";
+            }
+          }
+
+          for($i = 0; $i < count($kategori_kemampuan_array); $i++) {
               if($kategori_kemampuan_array[$i]){
-                  $kemampuanHTML .= "<li>".$kategori_kemampuan_array[$i]."-".$sub_kategori_kemampuan_array[$i]."</li>";
+                $kemampuanHTML .= "<li>".$kategori_kemampuan_array[$i]."-".$sub_kategori_kemampuan_array[$i]."</li>";
               }
           }
+          
           $pendidikanHTML .= "</ol>";
           $pengalamanHTML .= "</ol>";
           $kemampuanHTML .= "</ol>";
@@ -95,7 +102,7 @@
         </tbody>
       </table>
         <hr/>
-        <?php $no++; ?>
+        <?php //$no++; ?>
     <?php endforeach;?>
 </body>
 </html>

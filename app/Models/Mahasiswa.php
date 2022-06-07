@@ -10,6 +10,7 @@ class Mahasiswa extends Model
     protected $primaryKey       = 'id_mahasiswa';
     protected $returnType       = 'array';
     protected $allowedFields    = [
+        // 'id_mahasiswa',
         'nama',
         'tempat_lahir',
         'tanggal_lahir',
