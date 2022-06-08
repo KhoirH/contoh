@@ -254,146 +254,52 @@
             return `<div class='d-flex' style='gap:5px;'><input type='hidden' name='id_pendidikan[]' value='${value.id_pendidikan}'/><div class='form-group'><label for='nama-pendidikan'>Jenis Pendidikan</label><input type='text' class='form-control' value='${value.nama_pendidikan}' name='nama_pendidikan[]' id='nama-pendidikan' placeholder='Enter here'></div><div class='form-group'><label for='tipe-pendidikan'>Tipe</label><select class='form-control' id='tipe-pendidikan' value='${value.tipe_pendidikan}' name='tipe_pendidikan[]'>    <option value='formal' selected>Formal</option>    <option value='non-formal'>Non Formal</option></select></div><div class='form-group'><label for='tempat-pendidikan'>Sekolah</label><input type='text' class='form-control'  value='${value.tempat_pendidikan}' name='tempat_pendidikan[]' id='tempat-pendidikan' placeholder='Enter here'></div><div class='form-group'><label for='waktu-pendidikan'>Waktu Pendidikan</label><input type='text' class='form-control' id='waktu-pendidikan' value='${value.waktu_pendidikan}' name='waktu-pendidikan[]' placeholder='Enter here'></div></div>`
         }
 
-        const modalFormulir = () => {
+        const inputPendidikanKosong = () => {
             return `
-                <form method="POST" action="<?= base_url('curriculum-vitae/add-cv') ?>" id="form">
-                    <input type="hidden" value="insert" name="type_form"/>
-                    <input type="hidden" value="" name="id_mahasiswa"/>
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title text-dark" id="modal-form-title">Formulir </h3>
-                            <button type="reset" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div>
-                                <h5 class="text-dark"><b>Data diri</b></h5>
-                                
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="nama">Nama</label>
-                                            <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukan email">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="tempat-lahir">Tempat, tanggal lahir</label>
-                                            <div class='d-flex' style="gap:5px;">
-                                                <input type="text" name="tempat_lahir" class="form-control" id="tempat-lahir"  placeholder="Masukan tempat">
-                                                <input type="date" name="tanggal_lahir" class="form-control" id="tanggal-lahir"  placeholder="Masukan email">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="agama">Agama</label>
-                                            <input type="text" name="agama" class="form-control" id="agama" placeholder="Masukan agama">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="handphone">Handphone</label>
-                                            <input type="text" name="no_hp" class="form-control" id="handphone" placeholder="Masukan no handphone">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="email" name="email" class="form-control" id="email" placeholder="Masukan email">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="jenis-kelamin">Jenis Kelamin</label>
-                                            <select class="form-control" id="jenis-kelamin" name="jenis_kelamin">
-                                                <option value="laki-laki" selected>Laki-laki</option>
-                                                <option value="perempuan">Perempuan</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="status">Status</label>
-                                            <select class="form-control" id="status" name="status">
-                                                <option value="belum menikah" selected>Belum Menikah</option>
-                                                <option value="menikah">Menikah</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="alamat">Alamat</label>
-                                            <textarea class="form-control" id="alamat" rows="3" name="alamat" placeholder="Masukan alamat"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr/>
-                            <div>
-                                <h5 class="text-dark"><b>Pendidikan</b></h5>
-                                <div id="wrap-pendidikan">
-                                    <div class="d-flex" style="gap:5px;">
-                                        <div class="form-group">
-                                            <label for="nama-pendidikan">Jenis Pendidikan</label>
-                                            <input type="text" class="form-control" name="nama_pendidikan[]" id="nama-pendidikan" placeholder="Enter here">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="tipe-pendidikan">Tipe</label>
-                                            <select class="form-control" id="tipe-pendidikan" name="tipe_pendidikan[]">
-                                                <option value="formal" selected>Formal</option>
-                                                <option value="non-formal">Non Formal</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="tempat-pendidikan">Sekolah</label>
-                                            <input type="text" class="form-control" name="tempat_pendidikan[]" id="tempat-pendidikan" placeholder="Enter here">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="waktu-pendidikan">Waktu Pendidikan</label>
-                                            <input type="text" class="form-control" id="waktu-pendidikan" name="waktu_pendidikan[]" placeholder="Enter here">
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="button" id="btn-add-pendidikan" class="btn btn-primary btn-sm" >
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <hr/>
-                            <div>
-                                <h5 class="text-dark"><b>Pengalaman</b></h5>
-                                
-                                <div id="wrap-pengalaman">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="pengalaman[]" id="pengalaman" placeholder="Enter here">
-                                    </div>
-                                </div>
-                                
-                                <button type="button" id="btn-add-pengalaman" class="btn btn-primary btn-sm" >
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <hr/>
-                            <div>
-                                <h5 class="text-dark"><b>Kemampuan</b></h5>
-                                
-                                <div id="wrap-kemampuan">
-                                    <div class="d-flex" style="gap:5px;">
-                                        <div class="form-group w-100">
-                                            <label for="kategori-kemampuan">Kategori Kemampuan</label>
-                                            <input type="text" class="form-control" name="kategori_kemampuan[]" id="kategori-kemampuan" placeholder="Enter here">
-                                        </div>
-                                        <div class="form-group w-100">
-                                            <label for="sub-kategori-kemampuan">Sub-Kategori Kemampuan</label>
-                                            <input type="text" class="form-control" name="sub_kategori_kemampuan[]" id="sub-kategori-kemampuan" placeholder="Enter here">
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <button type="button" id="btn-add-kemampuan" class="btn btn-primary btn-sm" >
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                        </div>
+                <div class="d-flex" style="gap:5px;">
+                    <div class="form-group">
+                        <label for="nama-pendidikan">Jenis Pendidikan</label>
+                        <input type="text" class="form-control" name="nama_pendidikan[]" id="nama-pendidikan" placeholder="Enter here">
                     </div>
-                </form>
+                    <div class="form-group">
+                        <label for="tipe-pendidikan">Tipe</label>
+                        <select class="form-control" id="tipe-pendidikan" name="tipe_pendidikan[]">
+                            <option value="formal" selected>Formal</option>
+                            <option value="non-formal">Non Formal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tempat-pendidikan">Sekolah</label>
+                        <input type="text" class="form-control" name="tempat_pendidikan[]" id="tempat-pendidikan" placeholder="Enter here">
+                    </div>
+                    <div class="form-group">
+                        <label for="waktu-pendidikan">Waktu Pendidikan</label>
+                        <input type="text" class="form-control" id="waktu-pendidikan" name="waktu_pendidikan[]" placeholder="Enter here">
+                    </div>
+                </div>
+            `
+        }
+
+        const inputPengalamanKosong = () => {
+            return `
+                <div class="form-group">
+                    <input type="text" class="form-control" name="pengalaman[]" id="pengalaman" placeholder="Enter here">
+                </div>
+            `
+        }
+
+        const inputKemampuanKosong = () => {
+            return `
+                <div class="d-flex" style="gap:5px;">
+                    <div class="form-group w-100">
+                        <label for="kategori-kemampuan">Kategori Kemampuan</label>
+                        <input type="text" class="form-control" name="kategori_kemampuan[]" id="kategori-kemampuan" placeholder="Enter here">
+                    </div>
+                    <div class="form-group w-100">
+                        <label for="sub-kategori-kemampuan">Sub-Kategori Kemampuan</label>
+                        <input type="text" class="form-control" name="sub_kategori_kemampuan[]" id="sub-kategori-kemampuan" placeholder="Enter here">
+                    </div>
+                </div>
             `
         }
 
@@ -411,9 +317,19 @@
                 $('#wrap-pendidikan').append("<div class='d-flex' style='gap:5px;'><div class='form-group'><label for='nama-pendidikan'>Jenis Pendidikan</label><input type='text' class='form-control' name='nama_pendidikan[]' id='nama-pendidikan' placeholder='Enter here'></div><div class='form-group'><label for='tipe-pendidikan'>Tipe</label><select class='form-control' id='tipe-pendidikan' name='tipe_pendidikan[]'>    <option value='formal' selected>Formal</option>    <option value='non-formal'>Non Formal</option></select></div><div class='form-group'><label for='tempat-pendidikan'>Sekolah</label><input type='text' class='form-control' name='tempat_pendidikan[]' id='tempat-pendidikan' placeholder='Enter here'></div><div class='form-group'><label for='waktu-pendidikan'>Waktu Pendidikan</label><input type='text' class='form-control' id='waktu-pendidikan' name='waktu-pendidikan[]' placeholder='Enter here'></div></div>");
             })
 
-            // $('#btnTambah').click(function(){
-            //     $('#form').html(modalFormulir())
-            // })
+            $('#btnTambah').click(function(){
+                $(`#form [name='type_form']`).val('insert');
+                $('#form input[name=nama]').val(null);
+                $('#form input[name=tempat_lahir]').val(null);
+                $('#form input[name=tanggal_lahir]').val(null);
+                $('#form input[name=agama]').val(null);
+                $('#form input[name=no_hp]').val(null);
+                $('#form input[name=email]').val(null);
+                $('#form input[name=alamat]').text('');
+                $('#wrap-pendidikan').html(inputPendidikanKosong)
+                $('#wrap-kemampuan').html(inputKemampuanKosong)
+                $('#wrap-pengalaman').html(inputPengalamanKosong)
+            })
 
             $('.btn-edit').click(function(){
                 data = JSON.parse($(this).attr('data').split("'").join('"'));

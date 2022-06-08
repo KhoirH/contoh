@@ -108,7 +108,7 @@ class CurriculumVitae extends BaseController
 
                 for($i = 0; $i < count($data['nama_pendidikan']); $i++){
                     if($data['nama_pendidikan'][$i]) {
-                        if($id_pendidikan[$i]) { 
+                        if(isset($id_pendidikan[$i])) { 
                             $this->pendidikan->update($id_pendidikan[$i], array(
                                 'id_mahasiswa' => $id_mahasiswa,
                                 'tipe_pendidikan' => $data['tipe_pendidikan'][$i],
@@ -122,14 +122,14 @@ class CurriculumVitae extends BaseController
                                 'tipe_pendidikan' => $data['tipe_pendidikan'][$i],
                                 'nama_pendidikan' => $data['nama_pendidikan'][$i],
                                 'tempat_pendidikan' => $data['tempat_pendidikan'][$i],
-                                'waktu_pendidikan' => $data['waktu_pendidikan'][$i],
+                                'waktu_pendidikan' => $data['waktu-pendidikan'][$i],
                             );
                         }
                     }
                 }
                 for($i = 0; $i < count($data['pengalaman']); $i++){
                     if($data['pengalaman'][$i]){
-                        if($id_pengalaman[$i]) { 
+                        if(isset($id_pengalaman[$i])) { 
                             $this->pengalaman->update($id_pengalaman[$i], array(
                                 'id_mahasiswa' => $id_mahasiswa,
                                 'pengalaman' => $data['pengalaman'][$i],
@@ -145,7 +145,7 @@ class CurriculumVitae extends BaseController
                 for($i = 0; $i < count($data['kategori_kemampuan']); $i++){
                     if($data['kategori_kemampuan'][$i]){
 
-                        if($id_kemampuan[$i]) { 
+                        if(isset($id_kemampuan[$i])) { 
                             $this->kemampuan->update($id_kemampuan[$i], array(
                                 'id_mahasiswa' => $id_mahasiswa,
                                 'kategori_kemampuan' => $data['kategori_kemampuan'][$i],
