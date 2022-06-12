@@ -14,7 +14,7 @@ class User extends BaseController
             'data' => $user->findAll()
         ]);
     }
-//g
+
 
     public function Search()
     {
@@ -64,9 +64,8 @@ class User extends BaseController
     {
         $user = model("User");
         $user->where('id_petugas', $id)->delete();
-
-        return redirect()->to(base_url('User')); 
-        
+    
+        return redirect()->to(base_url('User'));
     }
 
 

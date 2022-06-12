@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class Rak extends Model
 {
     protected $table      = 'rak';
+    protected $primaryKey = 'id_rak';
     protected $returnType = "object";
 
     protected $allowedFields = [
@@ -19,11 +20,4 @@ class Rak extends Model
         'nama_rak' => "required",
         'lokasi_rak' => "required"
     ];
-
-    public function getAll(){
-        $builder = $this->db->table('rak');
-        $query = $builder->get();
-
-        return $query->getResult();
-    }
 }

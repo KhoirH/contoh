@@ -18,10 +18,10 @@
     <link href="<?php base_url() ?>/template/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body>
+    <script  src="<?php base_url() ?>/template/libs/jquery/jquery.min.js"></script>
     <?= $this->renderSection('content') ?>
     
     <!-- Bootstrap core JavaScript-->
-    <script src="<?php base_url() ?>/template/libs/jquery/jquery.min.js"></script>
     <script src="<?php base_url() ?>/template/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
